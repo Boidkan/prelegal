@@ -1,0 +1,66 @@
+{
+  "source": "https://github.com/CommonPaper",
+  "license": "CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/)",
+  "templates": [
+    {
+      "name": "Mutual NDA – Standard Terms",
+      "description": "Common Paper standard Mutual Non-Disclosure Agreement (MNDA) Standard Terms, allowing each party to disclose and protect confidential information for a defined purpose.",
+      "filename": "templates/Mutual-NDA.md"
+    },
+    {
+      "name": "Mutual NDA – Cover Page",
+      "description": "Cover Page for the Common Paper Mutual Non-Disclosure Agreement, used to capture party details and modifications and incorporate the MNDA Standard Terms by reference.",
+      "filename": "templates/Mutual-NDA-coverpage.md"
+    },
+    {
+      "name": "Cloud Service Agreement",
+      "description": "Common Paper standard Cloud Service Agreement (CSA) covering access, use, support, and terms for providing a cloud (SaaS) service to a customer.",
+      "filename": "templates/CSA.md"
+    },
+    {
+      "name": "Design Partner Agreement",
+      "description": "Common Paper standard Design Partner Agreement for giving early-access partners access to a product in exchange for feedback and participation in a development program.",
+      "filename": "templates/design-partner-agreement.md"
+    },
+    {
+      "name": "Service Level Agreement",
+      "description": "Common Paper standard Service Level Agreement (SLA) defining uptime targets, how availability is calculated, and related service commitments for a cloud service.",
+      "filename": "templates/sla.md"
+    },
+    {
+      "name": "Professional Services Agreement",
+      "description": "Common Paper standard Professional Services Agreement (PSA) governing the delivery of professional services under statements of work.",
+      "filename": "templates/psa.md"
+    },
+    {
+      "name": "Data Processing Agreement",
+      "description": "Common Paper standard Data Processing Agreement (DPA) covering processor and subprocessor relationships and the processing of personal data on behalf of a customer.",
+      "filename": "templates/DPA.md"
+    },
+    {
+      "name": "Software License Agreement",
+      "description": "Common Paper standard Software License Agreement granting a customer a license to install and use software for permitted uses.",
+      "filename": "templates/Software-License-Agreement.md"
+    },
+    {
+      "name": "Partnership Agreement",
+      "description": "Common Paper standard Partnership Agreement setting out each party's obligations and the terms of a business partnership.",
+      "filename": "templates/Partnership-Agreement.md"
+    },
+    {
+      "name": "Pilot Agreement",
+      "description": "Common Paper standard Pilot Agreement giving a customer time-limited access to a product for evaluation purposes during a pilot period.",
+      "filename": "templates/Pilot-Agreement.md"
+    },
+    {
+      "name": "Business Associate Agreement",
+      "description": "Common Paper standard Business Associate Agreement (BAA) addressing HIPAA obligations and the permitted use and disclosure of protected health information (PHI).",
+      "filename": "templates/BAA.md"
+    },
+    {
+      "name": "AI Addendum",
+      "description": "Common Paper standard AI Addendum supplementing an agreement to cover the use of AI services, including input, output, and related restrictions.",
+      "filename": "templates/AI-Addendum.md"
+    }
+  ]
+}
