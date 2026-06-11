@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { ChatPanel } from "@/components/ChatPanel";
+import { DocumentPicker } from "@/components/DocumentPicker";
 import { DocumentPreview } from "@/components/DocumentPreview";
 import { ApiError, api, type ChatMessage } from "@/lib/api";
 import { buildDocumentMarkdown } from "@/lib/buildDocument";
@@ -150,10 +151,11 @@ export function DocumentChat({
           {activeSpec ? (
             <DocumentPreview spec={activeSpec} draft={draft} standardTerms={activeTerms} />
           ) : (
-            <p className="text-sm text-brand-gray">
-              Your document will appear here once we’ve settled on a type. Tell
-              the assistant what you’d like to create.
-            </p>
+            <DocumentPicker
+              specs={Object.values(specs)}
+              disabled={busy}
+              onPick={(spec) => send(`I'd like to create a ${spec.name}.`)}
+            />
           )}
         </div>
       </section>

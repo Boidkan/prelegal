@@ -59,7 +59,8 @@ export default function Home() {
         </h1>
         <p className="mt-4 max-w-xl text-lg text-brand-gray">
           Prelegal helps you create agreements from trusted templates. Chat with
-          our assistant to draft a Mutual NDA in minutes — no forms to fill in.
+          our assistant to draft NDAs, service agreements, DPAs and more — no
+          forms to fill in.
         </p>
 
         <div className="mt-8">
@@ -68,7 +69,7 @@ export default function Home() {
               href="/create"
               className="inline-block rounded-lg bg-brand-purple px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:opacity-90"
             >
-              Create a Mutual NDA
+              Create a document
             </Link>
           ) : (
             <Link
