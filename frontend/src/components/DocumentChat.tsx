@@ -78,12 +78,16 @@ export function DocumentChat({
       .catch(() => setTerms((prev) => ({ ...prev, [id]: "" })));
   }, [draft.typeId]);
 
-  const send = async (text: string) => {
+  const send = async (text: string, startDraft?: DocumentDraft) => {
+    // `startDraft` deterministically sets the type (e.g. from the picker) so the
+    // backend activates that spec rather than re-detecting it from the message.
+    const outgoing = startDraft ?? draft;
     const next: ChatMessage[] = [...messages, { role: "user", content: text }];
     setMessages(next);
+    if (startDraft) setDraft(startDraft);
     setBusy(true);
     try {
-      const res = await api.chat.sendMessage(next, draft);
+      const res = await api.chat.sendMessage(next, outgoing);
       setMessages([...next, { role: "assistant", content: res.reply }]);
       setDraft(res.draft);
       setComplete(res.complete);
@@ -94,6 +98,9 @@ export function DocumentChat({
       setBusy(false);
     }
   };
+
+  const pickType = (spec: DocumentSpec) =>
+    send(`Let's create a ${spec.name}.`, { ...emptyDraft(), typeId: spec.id });
 
   const downloadMarkdown = () => {
     if (!activeSpec) return;
@@ -151,11 +158,7 @@ export function DocumentChat({
           {activeSpec ? (
             <DocumentPreview spec={activeSpec} draft={draft} standardTerms={activeTerms} />
           ) : (
-            <DocumentPicker
-              specs={Object.values(specs)}
-              disabled={busy}
-              onPick={(spec) => send(`I'd like to create a ${spec.name}.`)}
-            />
+            <DocumentPicker specs={Object.values(specs)} disabled={busy} onPick={pickType} />
           )}
         </div>
       </section>
