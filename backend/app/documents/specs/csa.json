@@ -1,0 +1,161 @@
+{
+  "id": "csa",
+  "name": "Cloud Service Agreement",
+  "description": "Common Paper standard Cloud Service Agreement (CSA) covering access, use, support, and terms for providing a cloud (SaaS) service to a customer.",
+  "keywords": ["csa", "cloud service agreement", "cloud service", "saas", "software as a service", "subscription", "cloud", "service agreement"],
+  "parties": [
+    { "role": "provider", "label": "Provider" },
+    { "role": "customer", "label": "Customer" }
+  ],
+  "sections": [
+    {
+      "title": "Order Form",
+      "fields": [
+        {
+          "key": "orderDate",
+          "label": "Order Date",
+          "type": "date",
+          "required": true,
+          "help": "The date this Order Form is entered into; the Agreement starts on this date."
+        },
+        {
+          "key": "cloudServiceDescription",
+          "label": "Cloud Service Description",
+          "type": "multiline",
+          "required": true,
+          "help": "Description of the Cloud Service (SaaS product) being provided to Customer."
+        },
+        {
+          "key": "subscriptionPeriod",
+          "label": "Subscription Period",
+          "type": "text",
+          "required": true,
+          "help": "Duration of each subscription term (e.g. '1 year starting on Order Date', '12 months')."
+        },
+        {
+          "key": "nonRenewalNoticeDate",
+          "label": "Non-Renewal Notice Date",
+          "type": "date",
+          "required": false,
+          "help": "Deadline by which either party must give notice of non-renewal to prevent automatic renewal."
+        },
+        {
+          "key": "technicalSupport",
+          "label": "Technical Support",
+          "type": "text",
+          "required": false,
+          "help": "Level or description of technical support Provider will provide during the Subscription Period (e.g. 'Standard support during business hours', 'none')."
+        },
+        {
+          "key": "useLimitations",
+          "label": "Use Limitations",
+          "type": "multiline",
+          "required": false,
+          "help": "Any specific limitations on Customer's use of the Product beyond the standard restrictions (e.g. seat count, usage quotas, permitted use cases)."
+        },
+        {
+          "key": "paymentProcess",
+          "label": "Payment Process",
+          "type": "choice",
+          "required": true,
+          "options": ["Invoicing", "Automatic payment"],
+          "help": "How Customer will pay Fees — by invoice or automatic charge to a payment method on file."
+        }
+      ]
+    },
+    {
+      "title": "Key Terms",
+      "fields": [
+        {
+          "key": "effectiveDate",
+          "label": "Effective Date",
+          "type": "date",
+          "required": true,
+          "help": "The date the Framework Terms take effect."
+        },
+        {
+          "key": "governingLaw",
+          "label": "Governing Law",
+          "type": "text",
+          "required": true,
+          "help": "The jurisdiction whose law governs this Agreement (e.g. 'Delaware', 'California')."
+        },
+        {
+          "key": "chosenCourts",
+          "label": "Chosen Courts",
+          "type": "text",
+          "required": true,
+          "help": "The courts where disputes must be brought (e.g. 'state and federal courts in Delaware')."
+        },
+        {
+          "key": "generalCapAmount",
+          "label": "General Cap Amount",
+          "type": "currency",
+          "required": true,
+          "help": "The maximum total liability cap for general claims under Section 8.1(a) (e.g. fees paid in the prior 12 months)."
+        },
+        {
+          "key": "increasedCapAmount",
+          "label": "Increased Cap Amount",
+          "type": "currency",
+          "required": false,
+          "help": "The higher liability cap that applies specifically to Increased Claims under Section 8.1(b)."
+        },
+        {
+          "key": "increasedClaims",
+          "label": "Increased Claims",
+          "type": "multiline",
+          "required": false,
+          "help": "The categories of claims subject to the Increased Cap Amount (e.g. IP infringement, data breach)."
+        },
+        {
+          "key": "unlimitedClaims",
+          "label": "Unlimited Claims",
+          "type": "multiline",
+          "required": false,
+          "help": "Categories of claims to which the liability cap does not apply at all (e.g. fraud, willful misconduct)."
+        },
+        {
+          "key": "providerCoveredClaims",
+          "label": "Provider Covered Claims",
+          "type": "multiline",
+          "required": false,
+          "help": "Claims Provider will indemnify Customer against (e.g. third-party IP infringement claims arising from the Product)."
+        },
+        {
+          "key": "customerCoveredClaims",
+          "label": "Customer Covered Claims",
+          "type": "multiline",
+          "required": false,
+          "help": "Claims Customer will indemnify Provider against (e.g. claims arising from Customer Content or Customer's breach)."
+        },
+        {
+          "key": "additionalWarranties",
+          "label": "Additional Warranties",
+          "type": "multiline",
+          "required": false,
+          "help": "Any additional warranties each party must comply with beyond the standard Section 6 warranties."
+        },
+        {
+          "key": "dpa",
+          "label": "DPA (Data Processing Agreement)",
+          "type": "text",
+          "required": false,
+          "help": "Reference to any applicable Data Processing Agreement between the parties, if any."
+        }
+      ]
+    }
+  ],
+  "tables": [
+    {
+      "key": "feeSchedule",
+      "label": "Fee Schedule",
+      "required": false,
+      "columns": [
+        { "key": "description", "label": "Description", "type": "text" },
+        { "key": "amount", "label": "Amount", "type": "currency" },
+        { "key": "period", "label": "Period / Frequency", "type": "text" }
+      ]
+    }
+  ]
+}

@@ -5,7 +5,7 @@
  * are same-origin and the session cookie rides along automatically.
  */
 
-import type { NdaForm } from "@/lib/nda";
+import type { DocumentDraft, DocumentSpec } from "@/lib/documents";
 
 export type User = {
   id: number;
@@ -15,10 +15,11 @@ export type User = {
 
 export type ChatMessage = { role: "user" | "assistant"; content: string };
 
-/** Response from POST /api/chat/message. `draft` matches the NdaForm shape. */
+/** Response from POST /api/chat/message. */
 export type ChatResponse = {
   reply: string;
-  draft: NdaForm;
+  draft: DocumentDraft;
+  documentType: string | null;
   complete: boolean;
   missingFields: string[];
 };
@@ -81,10 +82,19 @@ export const api = {
   chat: {
     greeting: () => request<{ reply: string }>("/chat/greeting"),
 
-    sendMessage: (messages: ChatMessage[], draft: NdaForm) =>
+    sendMessage: (messages: ChatMessage[], draft: DocumentDraft) =>
       request<ChatResponse>("/chat/message", {
         method: "POST",
         body: JSON.stringify({ messages, draft }),
       }),
+  },
+
+  documents: {
+    types: () => request<DocumentSpec[]>("/documents/types"),
+
+    standardTerms: (typeId: string) =>
+      request<{ text: string }>(
+        `/documents/types/${encodeURIComponent(typeId)}/standard-terms`,
+      ),
   },
 };

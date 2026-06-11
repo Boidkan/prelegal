@@ -1,0 +1,82 @@
+{
+  "id": "pilot",
+  "name": "Pilot Agreement",
+  "description": "Common Paper standard Pilot Agreement giving a customer time-limited access to a product for evaluation purposes during a pilot period.",
+  "keywords": ["pilot", "pilot agreement", "trial", "evaluation", "proof of concept", "poc", "time-limited access", "evaluate", "test product"],
+  "parties": [
+    { "role": "provider", "label": "Provider" },
+    { "role": "customer", "label": "Customer" }
+  ],
+  "sections": [
+    {
+      "title": "Order Form",
+      "fields": [
+        {
+          "key": "effectiveDate",
+          "label": "Effective Date",
+          "type": "date",
+          "required": true,
+          "help": "The date the agreement takes effect."
+        },
+        {
+          "key": "productDescription",
+          "label": "Product",
+          "type": "multiline",
+          "required": true,
+          "help": "Description of the product being evaluated during the pilot."
+        },
+        {
+          "key": "pilotPeriod",
+          "label": "Pilot Period",
+          "type": "text",
+          "required": true,
+          "help": "The duration or specific date range of the pilot (e.g. 90 days from the Effective Date, or Jan 1 – Mar 31 2026)."
+        },
+        {
+          "key": "evaluationPurposes",
+          "label": "Evaluation Purposes",
+          "type": "multiline",
+          "required": false,
+          "help": "How Customer may use the Product during the pilot. Leave blank to use the standard definition: internal use solely to test and evaluate the Product to determine whether to enter into a Definitive Agreement.",
+          "default": "The internal use of the Product solely to test and evaluate the Product to determine whether to enter into a Definitive Agreement with Provider."
+        },
+        {
+          "key": "fees",
+          "label": "Fees",
+          "type": "currency",
+          "required": false,
+          "help": "Any fees payable by Customer during the pilot, if applicable. Leave blank if the pilot is free of charge."
+        },
+        {
+          "key": "generalCapAmount",
+          "label": "General Cap Amount",
+          "type": "currency",
+          "required": true,
+          "help": "Maximum total cumulative liability either party may face under this agreement (Section 5.1)."
+        },
+        {
+          "key": "governingLaw",
+          "label": "Governing Law",
+          "type": "text",
+          "required": true,
+          "help": "The U.S. state (or other jurisdiction) whose law governs this agreement (e.g. Delaware)."
+        },
+        {
+          "key": "chosenCourts",
+          "label": "Chosen Courts",
+          "type": "text",
+          "required": true,
+          "help": "The courts where disputes will be brought (e.g. state and federal courts located in San Francisco, California)."
+        },
+        {
+          "key": "modifications",
+          "label": "Modifications",
+          "type": "multiline",
+          "required": false,
+          "help": "Any modifications to the Standard Terms (optional)."
+        }
+      ]
+    }
+  ],
+  "tables": []
+}

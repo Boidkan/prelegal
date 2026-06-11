@@ -15,6 +15,7 @@ from .auth.router import router as auth_router
 from .chat.router import router as chat_router
 from .config import settings
 from .database import init_db
+from .documents.router import router as documents_router
 from .health import router as health_router
 
 
@@ -31,6 +32,7 @@ app = FastAPI(title="Prelegal", lifespan=lifespan)
 app.include_router(health_router)
 app.include_router(auth_router)
 app.include_router(chat_router)
+app.include_router(documents_router)
 
 
 def _mount_frontend() -> None:

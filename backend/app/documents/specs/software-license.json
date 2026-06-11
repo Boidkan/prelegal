@@ -1,0 +1,208 @@
+{
+  "id": "software-license",
+  "name": "Software License Agreement",
+  "description": "Common Paper standard Software License Agreement granting a customer a license to install and use software for permitted uses.",
+  "keywords": [
+    "software license",
+    "license agreement",
+    "software",
+    "on-premise",
+    "install",
+    "permitted uses",
+    "subscription period"
+  ],
+  "parties": [
+    {
+      "role": "provider",
+      "label": "Provider"
+    },
+    {
+      "role": "customer",
+      "label": "Customer"
+    }
+  ],
+  "sections": [
+    {
+      "title": "Order Details",
+      "fields": [
+        {
+          "key": "orderDate",
+          "label": "Order Date",
+          "type": "date",
+          "required": true,
+          "help": "The date the Order Form is entered into."
+        },
+        {
+          "key": "effectiveDate",
+          "label": "Effective Date",
+          "type": "date",
+          "required": true,
+          "help": "The date the Framework Terms take effect."
+        },
+        {
+          "key": "subscriptionPeriod",
+          "label": "Subscription Period",
+          "type": "text",
+          "required": true,
+          "help": "The duration of the license subscription (e.g. 1 year, January 1 \u2013 December 31, 2025)."
+        },
+        {
+          "key": "nonRenewalNoticeDate",
+          "label": "Non-Renewal Notice Date",
+          "type": "date",
+          "required": false,
+          "help": "The deadline by which either party must notify the other of intent not to renew."
+        }
+      ]
+    },
+    {
+      "title": "Software & License",
+      "fields": [
+        {
+          "key": "software",
+          "label": "Software",
+          "type": "text",
+          "required": true,
+          "help": "The name and version (if applicable) of the software being licensed."
+        },
+        {
+          "key": "permittedUses",
+          "label": "Permitted Uses",
+          "type": "multiline",
+          "required": true,
+          "help": "The specific purposes for which Customer may use the Software."
+        },
+        {
+          "key": "licenseLimits",
+          "label": "License Limits",
+          "type": "multiline",
+          "required": false,
+          "help": "Any quantitative or qualitative restrictions on use (e.g. number of users, seats, instances, or geographic limits)."
+        }
+      ]
+    },
+    {
+      "title": "Payment",
+      "fields": [
+        {
+          "key": "paymentProcess",
+          "label": "Payment Process",
+          "type": "choice",
+          "required": true,
+          "options": [
+            "Invoicing",
+            "Automatic payment"
+          ],
+          "help": "How Fees will be collected \u2014 by invoice or automatic charge."
+        }
+      ]
+    },
+    {
+      "title": "Warranties",
+      "fields": [
+        {
+          "key": "warrantyPeriod",
+          "label": "Warranty Period",
+          "type": "text",
+          "required": false,
+          "help": "The period during which Provider warrants the Software will substantially conform to Documentation (e.g. 90 days from delivery)."
+        },
+        {
+          "key": "additionalWarranties",
+          "label": "Additional Warranties",
+          "type": "multiline",
+          "required": false,
+          "help": "Any additional warranties each party makes beyond the standard mutual representations."
+        }
+      ]
+    },
+    {
+      "title": "Liability",
+      "fields": [
+        {
+          "key": "generalCapAmount",
+          "label": "General Cap Amount",
+          "type": "currency",
+          "required": true,
+          "help": "The maximum total cumulative liability of each party for all claims under the Agreement."
+        },
+        {
+          "key": "increasedCapAmount",
+          "label": "Increased Cap Amount",
+          "type": "currency",
+          "required": false,
+          "help": "The higher liability cap that applies to Increased Claims, if any."
+        },
+        {
+          "key": "increasedClaims",
+          "label": "Increased Claims",
+          "type": "multiline",
+          "required": false,
+          "help": "The categories of claims subject to the Increased Cap Amount rather than the General Cap Amount."
+        },
+        {
+          "key": "unlimitedClaims",
+          "label": "Unlimited Claims",
+          "type": "multiline",
+          "required": false,
+          "help": "The categories of claims that are not subject to any liability cap."
+        }
+      ]
+    },
+    {
+      "title": "Termination & Data",
+      "fields": [
+        {
+          "key": "deletionProcedure",
+          "label": "Deletion Procedure",
+          "type": "multiline",
+          "required": false,
+          "help": "Steps Customer must follow to remove the Software upon expiration or termination."
+        }
+      ]
+    },
+    {
+      "title": "Governing Terms",
+      "fields": [
+        {
+          "key": "governingLaw",
+          "label": "Governing Law",
+          "type": "text",
+          "required": true,
+          "help": "The jurisdiction whose law governs this Agreement (e.g. Delaware)."
+        },
+        {
+          "key": "chosenCourts",
+          "label": "Chosen Courts",
+          "type": "text",
+          "required": true,
+          "help": "The courts in which disputes will be brought (e.g. courts of the State of Delaware)."
+        }
+      ]
+    }
+  ],
+  "tables": [
+    {
+      "key": "fees",
+      "label": "Fees",
+      "required": true,
+      "columns": [
+        {
+          "key": "description",
+          "label": "Description",
+          "type": "text"
+        },
+        {
+          "key": "amount",
+          "label": "Amount",
+          "type": "currency"
+        },
+        {
+          "key": "period",
+          "label": "Period",
+          "type": "text"
+        }
+      ]
+    }
+  ]
+}

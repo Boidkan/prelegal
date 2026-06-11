@@ -1,0 +1,88 @@
+{
+  "id": "mutual-nda",
+  "name": "Mutual NDA",
+  "description": "Common Paper standard Mutual Non-Disclosure Agreement (MNDA), allowing each party to disclose and protect confidential information for a defined purpose.",
+  "keywords": ["nda", "mutual nda", "mnda", "non-disclosure", "nondisclosure", "confidentiality", "confidential"],
+  "parties": [
+    { "role": "party1", "label": "Party 1" },
+    { "role": "party2", "label": "Party 2" }
+  ],
+  "sections": [
+    {
+      "title": "Agreement Terms",
+      "fields": [
+        {
+          "key": "purpose",
+          "label": "Purpose",
+          "type": "multiline",
+          "required": false,
+          "help": "How Confidential Information may be used.",
+          "default": "Evaluating whether to enter into a business relationship with the other party."
+        },
+        {
+          "key": "effectiveDate",
+          "label": "Effective Date",
+          "type": "date",
+          "required": true,
+          "help": "The date the agreement takes effect."
+        },
+        {
+          "key": "mndaTermType",
+          "label": "MNDA Term",
+          "type": "choice",
+          "required": false,
+          "options": ["Expires after a set term", "Continues until terminated"],
+          "default": "Expires after a set term",
+          "help": "How long the MNDA itself lasts."
+        },
+        {
+          "key": "mndaTermYears",
+          "label": "MNDA Term (years)",
+          "type": "number",
+          "required": false,
+          "default": "1",
+          "help": "Years until the MNDA expires, if it expires."
+        },
+        {
+          "key": "confidentialityType",
+          "label": "Term of Confidentiality",
+          "type": "choice",
+          "required": false,
+          "options": ["A set number of years", "In perpetuity"],
+          "default": "A set number of years",
+          "help": "How long confidentiality obligations last."
+        },
+        {
+          "key": "confidentialityYears",
+          "label": "Confidentiality (years)",
+          "type": "number",
+          "required": false,
+          "default": "1",
+          "help": "Years of confidentiality, if a set number."
+        },
+        {
+          "key": "governingLaw",
+          "label": "Governing Law",
+          "type": "text",
+          "required": true,
+          "help": "The U.S. state whose law governs (e.g. Delaware)."
+        },
+        {
+          "key": "jurisdiction",
+          "label": "Jurisdiction",
+          "type": "text",
+          "required": true,
+          "help": "City/county and state where disputes are handled."
+        },
+        {
+          "key": "modifications",
+          "label": "MNDA Modifications",
+          "type": "multiline",
+          "required": false,
+          "help": "Any modifications to the Standard Terms (optional)."
+        }
+      ]
+    }
+  ],
+  "tables": []
+}

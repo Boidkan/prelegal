@@ -1,0 +1,129 @@
+{
+  "id": "psa",
+  "name": "Professional Services Agreement",
+  "description": "Common Paper standard Professional Services Agreement (PSA) governing the delivery of professional services under statements of work.",
+  "keywords": ["psa", "professional services", "services agreement", "statement of work", "sow", "consulting", "deliverables", "professional services agreement"],
+  "parties": [
+    { "role": "provider", "label": "Provider" },
+    { "role": "customer", "label": "Customer" }
+  ],
+  "sections": [
+    {
+      "title": "Agreement Terms",
+      "fields": [
+        {
+          "key": "effectiveDate",
+          "label": "Effective Date",
+          "type": "date",
+          "required": true,
+          "help": "The date this Agreement takes effect."
+        },
+        {
+          "key": "sowTerm",
+          "label": "SOW Term",
+          "type": "text",
+          "required": false,
+          "help": "The duration or end date of the Statement of Work (e.g. '12 months from Effective Date')."
+        },
+        {
+          "key": "governingLaw",
+          "label": "Governing Law",
+          "type": "text",
+          "required": true,
+          "help": "The U.S. state or jurisdiction whose law governs this Agreement (e.g. Delaware)."
+        },
+        {
+          "key": "chosenCourts",
+          "label": "Chosen Courts",
+          "type": "text",
+          "required": true,
+          "help": "The courts where disputes will be brought (e.g. 'state and federal courts of San Francisco, California')."
+        },
+        {
+          "key": "dpa",
+          "label": "Data Processing Agreement (DPA)",
+          "type": "choice",
+          "required": false,
+          "options": ["Yes", "No"],
+          "default": "No",
+          "help": "Whether the parties have a separate Data Processing Agreement governing personal data."
+        },
+        {
+          "key": "securityPolicy",
+          "label": "Security Policy",
+          "type": "text",
+          "required": false,
+          "help": "URL or name of the Provider's security policy that governs its security obligations, if any."
+        },
+        {
+          "key": "additionalWarranties",
+          "label": "Additional Warranties",
+          "type": "multiline",
+          "required": false,
+          "help": "Any additional warranties both parties must comply with beyond the standard mutual warranties."
+        }
+      ]
+    },
+    {
+      "title": "Liability",
+      "fields": [
+        {
+          "key": "generalCapAmount",
+          "label": "General Cap Amount",
+          "type": "currency",
+          "required": true,
+          "help": "The maximum total cumulative liability for general claims (e.g. fees paid in the prior 12 months)."
+        },
+        {
+          "key": "increasedCapAmount",
+          "label": "Increased Cap Amount",
+          "type": "currency",
+          "required": false,
+          "help": "Higher liability cap that applies to Increased Claims, if any."
+        },
+        {
+          "key": "increasedClaims",
+          "label": "Increased Claims",
+          "type": "multiline",
+          "required": false,
+          "help": "Categories of claims subject to the Increased Cap Amount (e.g. IP indemnification, data breach)."
+        },
+        {
+          "key": "unlimitedClaims",
+          "label": "Unlimited Claims",
+          "type": "multiline",
+          "required": false,
+          "help": "Categories of claims exempt from any liability cap (e.g. fraud, willful misconduct, death/personal injury)."
+        }
+      ]
+    }
+  ],
+  "tables": [
+    {
+      "key": "statementsOfWork",
+      "label": "Statements of Work (SOW)",
+      "required": true,
+      "columns": [
+        { "key": "services", "label": "Services", "type": "multiline" },
+        { "key": "deliverables", "label": "Deliverables", "type": "multiline" },
+        { "key": "deliverableRequirements", "label": "Deliverable Requirements", "type": "multiline" },
+        { "key": "rejectionPeriod", "label": "Rejection Period", "type": "text" },
+        { "key": "resubmissionPeriod", "label": "Resubmission Period", "type": "text" },
+        { "key": "customerObligations", "label": "Customer Obligations", "type": "multiline" },
+        { "key": "fees", "label": "Fees", "type": "currency" },
+        { "key": "paymentPeriod", "label": "Payment Period", "type": "text" },
+        { "key": "timeOfAssignment", "label": "Time of Assignment", "type": "text" },
+        { "key": "acceptableThirdPartyMaterials", "label": "Acceptable Third-Party Materials", "type": "multiline" }
+      ]
+    },
+    {
+      "key": "insuranceMinimums",
+      "label": "Insurance Minimums",
+      "required": false,
+      "columns": [
+        { "key": "type", "label": "Insurance Type", "type": "text" },
+        { "key": "amount", "label": "Coverage Amount", "type": "currency" }
+      ]
+    }
+  ]
+}
