@@ -1,0 +1,60 @@
+# ---- Secrets & environment ----
+.env
+.env.*
+!.env.example
+
+# ---- Python / uv backend (backend/) ----
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+.uv/
+.python-version
+*.egg-info/
+.eggs/
+build/
+dist/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+# ---- Node / Next.js frontend (frontend/) ----
+# frontend/ has its own .gitignore; these catch stray installs/builds anywhere.
+node_modules/
+.next/
+out/
+*.tsbuildinfo
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# ---- Database (SQLite, recreated each container start) ----
+*.db
+*.sqlite
+*.sqlite3
+*.db-journal
+
+# ---- Docker ----
+# Local-only compose overrides; keep committed Dockerfile/compose.yml tracked.
+docker-compose.override.yml
+
+# ---- Logs & runtime ----
+*.log
+logs/
+*.pid
+
+# ---- OS ----
+.DS_Store
+Thumbs.db
+
+# ---- Editors / IDEs ----
+.idea/
+.vscode/
+*.swp
+*~

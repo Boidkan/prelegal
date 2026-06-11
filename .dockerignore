@@ -1,0 +1,32 @@
+# Version control / docs
+.git
+.gitignore
+*.md
+!backend/README.md
+
+# Secrets — never bake into the image
+.env
+.env.*
+
+# Node / Next.js — rebuilt inside the image
+frontend/node_modules
+frontend/.next
+frontend/out
+
+# Python — recreated by uv inside the image
+backend/.venv
+**/__pycache__
+**/*.pyc
+.pytest_cache
+.ruff_cache
+
+# Local databases
+*.db
+*.sqlite
+*.sqlite3
+
+# Tooling / editors
+.claude
+.idea
+.vscode
+.DS_Store

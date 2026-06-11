@@ -1,0 +1,18 @@
+# Single service: the backend image bundles the static frontend and serves
+# everything on port 8000. The start/stop scripts drive this file.
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: prelegal:latest
+    container_name: prelegal
+    ports:
+      - "8000:8000"
+    environment:
+      # The SQLite database is recreated on every startup, so it stays inside
+      # the container with no volume — it is intentionally temporary.
+      PRELEGAL_DB_PATH: /tmp/prelegal.db
+      # Override in real deployments.
+      PRELEGAL_JWT_SECRET: ${PRELEGAL_JWT_SECRET:-dev-insecure-change-me}
+    restart: unless-stopped
