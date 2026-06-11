@@ -16,7 +16,7 @@ import {
 
 const Field = ({ label, children }: { label: string; children: React.ReactNode }) => (
   <div className="mb-4">
-    <h4 className="text-xs font-semibold uppercase tracking-wide text-blue-700">
+    <h4 className="text-xs font-semibold uppercase tracking-wide text-brand-blue">
       {label}
     </h4>
     <p className="text-sm text-slate-800">{children}</p>
@@ -57,7 +57,7 @@ export function NdaPreview({ form }: { form: NdaForm }) {
   return (
     <article className="prose-sm mx-auto max-w-none text-slate-800">
       <header className="mb-6 border-b border-slate-200 pb-4">
-        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-blue-700">
+        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-blue">
           Prelegal
         </p>
         <h2 className="mt-1 text-2xl font-bold text-slate-900">

@@ -20,9 +20,9 @@ When instructed to build a feature:
 
 ## AI design
 
-When writing code to make calls to LLMs, use your Cerebras skill to use LiteLLM via OpenRouter to the `openrouter/openai/gpt-oss-120b` model with Cerebras as the inference provider. You should use Structured Outputs so that you can interpret the results and populate fields in the legal document.
+When writing code to make calls to LLMs, use LiteLLM with OpenAI as the inference provider, calling an OpenAI model (default `openai/gpt-4o-mini`, configurable via the `PRELEGAL_LLM_MODEL` environment variable). You should use Structured Outputs so that you can interpret the results and populate fields in the legal document.
 
-There is an OPENROUTER_API_KEY in the .env file in the project root.
+There is an OPENAI_API_KEY in the .env file in the project root.
 
 ## Technical design
 
@@ -66,7 +66,7 @@ Backend available at http://localhost:8000
 
 ### Completed (PL-5)
 - AI chat interface replaces manual form for NDA creation
-- Uses LiteLLM via OpenRouter with Cerebras inference (gpt-oss-120b model)
+- Uses LiteLLM with OpenAI inference (default `openai/gpt-4o-mini` model)
 - Structured outputs for reliable field extraction from conversation
 - Live preview updates as AI extracts fields from chat
 - AI greets user, asks questions conversationally, and confirms when complete

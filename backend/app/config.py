@@ -30,6 +30,9 @@ class Settings:
     jwt_ttl_seconds: int
     # Whether to mark the auth cookie Secure (disabled for local HTTP dev).
     cookie_secure: bool
+    # LiteLLM model id for chat. OpenAI by default; OPENAI_API_KEY is read from
+    # the environment by LiteLLM directly.
+    llm_model: str
 
 
 def load_settings() -> Settings:
@@ -42,6 +45,7 @@ def load_settings() -> Settings:
         jwt_secret=os.getenv("PRELEGAL_JWT_SECRET", "dev-insecure-change-me"),
         jwt_ttl_seconds=int(os.getenv("PRELEGAL_JWT_TTL_SECONDS", str(60 * 60 * 24))),
         cookie_secure=os.getenv("PRELEGAL_COOKIE_SECURE", "false").lower() == "true",
+        llm_model=os.getenv("PRELEGAL_LLM_MODEL", "openai/gpt-4o-mini"),
     )
 
 
