@@ -5,10 +5,22 @@
  * are same-origin and the session cookie rides along automatically.
  */
 
+import type { NdaForm } from "@/lib/nda";
+
 export type User = {
   id: number;
   email: string;
   created_at: string;
+};
+
+export type ChatMessage = { role: "user" | "assistant"; content: string };
+
+/** Response from POST /api/chat/message. `draft` matches the NdaForm shape. */
+export type ChatResponse = {
+  reply: string;
+  draft: NdaForm;
+  complete: boolean;
+  missingFields: string[];
 };
 
 /** Error carrying the HTTP status and the backend's `detail` message. */
@@ -65,4 +77,14 @@ export const api = {
   signout: () => request<Record<string, never>>("/auth/signout", { method: "POST" }),
 
   me: () => request<User>("/auth/me"),
+
+  chat: {
+    greeting: () => request<{ reply: string }>("/chat/greeting"),
+
+    sendMessage: (messages: ChatMessage[], draft: NdaForm) =>
+      request<ChatResponse>("/chat/message", {
+        method: "POST",
+        body: JSON.stringify({ messages, draft }),
+      }),
+  },
 };

@@ -9,10 +9,17 @@ services:
     container_name: prelegal
     ports:
       - "8000:8000"
+    # Inject .env (notably OPENAI_API_KEY) straight into the container. Using
+    # env_file rather than ${VAR} interpolation deliberately avoids the host
+    # shell shadowing the project's .env value.
+    env_file:
+      - path: .env
+        required: false
     environment:
       # The SQLite database is recreated on every startup, so it stays inside
       # the container with no volume — it is intentionally temporary.
       PRELEGAL_DB_PATH: /tmp/prelegal.db
       # Override in real deployments.
       PRELEGAL_JWT_SECRET: ${PRELEGAL_JWT_SECRET:-dev-insecure-change-me}
+      PRELEGAL_LLM_MODEL: ${PRELEGAL_LLM_MODEL:-openai/gpt-4o-mini}
     restart: unless-stopped

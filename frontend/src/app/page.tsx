@@ -52,21 +52,24 @@ export default function Home() {
 
       <main className="mx-auto flex w-full max-w-3xl flex-1 flex-col items-center justify-center px-6 py-20 text-center">
         <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-yellow">
-          V1 Foundation
+          AI-Powered Drafting
         </p>
         <h1 className="mt-3 text-4xl font-bold text-brand-navy sm:text-5xl">
           Draft legal agreements, faster.
         </h1>
         <p className="mt-4 max-w-xl text-lg text-brand-gray">
-          Prelegal helps you create agreements from trusted templates. The
-          platform foundation is in place — document drafting is coming soon.
+          Prelegal helps you create agreements from trusted templates. Chat with
+          our assistant to draft a Mutual NDA in minutes — no forms to fill in.
         </p>
 
         <div className="mt-8">
           {loading ? null : user ? (
-            <p className="text-sm text-brand-gray">
-              You&rsquo;re signed in and ready for what&rsquo;s next.
-            </p>
+            <Link
+              href="/create"
+              className="inline-block rounded-lg bg-brand-purple px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:opacity-90"
+            >
+              Create a Mutual NDA
+            </Link>
           ) : (
             <Link
               href="/signup"
