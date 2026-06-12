@@ -1,0 +1,169 @@
+{
+  "id": "dpa",
+  "name": "Data Processing Agreement",
+  "description": "Common Paper standard Data Processing Agreement (DPA) covering processor and subprocessor relationships and the processing of personal data on behalf of a customer.",
+  "keywords": [
+    "dpa",
+    "data processing",
+    "data processing agreement",
+    "gdpr",
+    "personal data",
+    "processor",
+    "subprocessor",
+    "privacy",
+    "hipaa",
+    "data protection"
+  ],
+  "parties": [
+    {
+      "role": "provider",
+      "label": "Provider"
+    },
+    {
+      "role": "customer",
+      "label": "Customer"
+    }
+  ],
+  "sections": [
+    {
+      "title": "Agreement Reference",
+      "fields": [
+        {
+          "key": "effectiveDate",
+          "label": "Effective Date",
+          "type": "date",
+          "required": true,
+          "help": "The date this DPA takes effect (typically the same as the underlying service agreement)."
+        },
+        {
+          "key": "agreement",
+          "label": "Underlying Agreement",
+          "type": "text",
+          "required": true,
+          "help": "Name or reference of the main service agreement this DPA supplements (e.g. 'Cloud Service Agreement dated 2025-01-01')."
+        },
+        {
+          "key": "serviceDescription",
+          "label": "Service Description",
+          "type": "multiline",
+          "required": true,
+          "help": "Brief description of the Service provided under the Agreement."
+        }
+      ]
+    },
+    {
+      "title": "Annex I(B) \u2014 Processing Details",
+      "fields": [
+        {
+          "key": "natureAndPurpose",
+          "label": "Nature and Purpose of Processing",
+          "type": "multiline",
+          "required": true,
+          "help": "Describe the nature of the processing activities and the purpose for which Customer Personal Data is processed (e.g. hosting, analytics, support)."
+        },
+        {
+          "key": "categoriesOfPersonalData",
+          "label": "Categories of Personal Data",
+          "type": "multiline",
+          "required": true,
+          "help": "List the types of personal data processed (e.g. names, email addresses, usage logs, payment information)."
+        },
+        {
+          "key": "categoriesOfDataSubjects",
+          "label": "Categories of Data Subjects",
+          "type": "multiline",
+          "required": true,
+          "help": "Identify the categories of individuals whose personal data is processed (e.g. Customer's employees, end users, customers)."
+        },
+        {
+          "key": "durationOfProcessing",
+          "label": "Duration of Processing",
+          "type": "text",
+          "required": true,
+          "help": "How long Provider will process the personal data (e.g. 'For the term of the Agreement plus 30 days for deletion')."
+        },
+        {
+          "key": "frequencyOfTransfer",
+          "label": "Frequency of Transfer",
+          "type": "text",
+          "required": false,
+          "help": "How often personal data is transferred to Provider (e.g. 'Continuous', 'On-demand', 'Daily batch')."
+        },
+        {
+          "key": "specialCategoryData",
+          "label": "Special Category Data",
+          "type": "choice",
+          "required": true,
+          "options": [
+            "Yes",
+            "No"
+          ],
+          "default": "No",
+          "help": "Does the processing involve Special Category Data as defined under Article 9 of the GDPR (e.g. health, racial/ethnic origin, biometrics)?"
+        },
+        {
+          "key": "specialCategoryRestrictions",
+          "label": "Special Category Data Restrictions or Safeguards",
+          "type": "multiline",
+          "required": false,
+          "help": "If Special Category Data is processed, describe any restrictions or additional safeguards that apply."
+        }
+      ]
+    },
+    {
+      "title": "Annex II \u2014 Security Policy",
+      "fields": [
+        {
+          "key": "securityPolicy",
+          "label": "Security Policy",
+          "type": "text",
+          "required": true,
+          "help": "URL or name of Provider's information security policy or standards document (e.g. 'https://example.com/security' or 'ISO 27001 policy dated 2025-01-01')."
+        },
+        {
+          "key": "providerSecurityContact",
+          "label": "Provider Security Contact",
+          "type": "text",
+          "required": true,
+          "help": "Email address or name/title of the Provider contact for security due diligence and audit requests."
+        }
+      ]
+    },
+    {
+      "title": "Governing Law (EEA SCCs)",
+      "fields": [
+        {
+          "key": "governingMemberState",
+          "label": "Governing Member State",
+          "type": "text",
+          "required": false,
+          "help": "The EU/EEA member state whose law governs the EEA Standard Contractual Clauses (Clause 17), if applicable (e.g. 'Ireland', 'Germany'). Leave blank if EEA SCCs do not apply."
+        }
+      ]
+    }
+  ],
+  "tables": [
+    {
+      "key": "approvedSubprocessors",
+      "label": "Approved Subprocessors",
+      "required": false,
+      "columns": [
+        {
+          "key": "name",
+          "label": "Subprocessor Name",
+          "type": "text"
+        },
+        {
+          "key": "country",
+          "label": "Country of Location",
+          "type": "text"
+        },
+        {
+          "key": "processingTasks",
+          "label": "Processing Tasks",
+          "type": "text"
+        }
+      ]
+    }
+  ]
+}

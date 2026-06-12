@@ -3,6 +3,8 @@
 .gitignore
 *.md
 !backend/README.md
+# Standard Terms are data the backend serves at runtime — keep them in the image.
+!backend/app/documents/standard_terms/*.md
 
 # Secrets — never bake into the image
 .env

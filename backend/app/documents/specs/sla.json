@@ -1,0 +1,135 @@
+{
+  "id": "sla",
+  "name": "Service Level Agreement",
+  "description": "Common Paper standard Service Level Agreement (SLA) defining uptime targets, how availability is calculated, and related service commitments for a cloud service.",
+  "keywords": [
+    "sla",
+    "service level",
+    "uptime",
+    "availability",
+    "response time",
+    "service credit",
+    "downtime"
+  ],
+  "parties": [
+    {
+      "role": "provider",
+      "label": "Provider"
+    },
+    {
+      "role": "customer",
+      "label": "Customer"
+    }
+  ],
+  "sections": [
+    {
+      "title": "Service Levels",
+      "fields": [
+        {
+          "key": "effectiveDate",
+          "label": "Effective Date",
+          "type": "date",
+          "required": true,
+          "help": "The date the SLA takes effect."
+        },
+        {
+          "key": "subscriptionPeriod",
+          "label": "Subscription Period",
+          "type": "text",
+          "required": true,
+          "help": "The term covered by this SLA (e.g. 'January 1, 2025 \u2013 December 31, 2025')."
+        },
+        {
+          "key": "targetUptime",
+          "label": "Target Uptime",
+          "type": "percent",
+          "required": false,
+          "help": "The minimum monthly availability percentage Provider commits to (e.g. 99.9). Leave blank if no uptime commitment applies."
+        },
+        {
+          "key": "scheduledDowntime",
+          "label": "Scheduled Downtime",
+          "type": "text",
+          "required": false,
+          "help": "Planned maintenance windows excluded from availability calculations (e.g. 'Sundays 2:00\u20134:00 AM UTC')."
+        },
+        {
+          "key": "excludedMinutes",
+          "label": "Additional Excluded Minutes",
+          "type": "multiline",
+          "required": false,
+          "help": "Any additional circumstances beyond the standard Excluded Minutes definition that are excluded from availability calculations."
+        }
+      ]
+    },
+    {
+      "title": "Support",
+      "fields": [
+        {
+          "key": "targetResponseTime",
+          "label": "Target Response Time",
+          "type": "text",
+          "required": false,
+          "help": "The maximum time within which Provider will acknowledge support requests (e.g. '4 business hours'). Leave blank if no response time commitment applies."
+        },
+        {
+          "key": "supportChannel",
+          "label": "Support Channel",
+          "type": "text",
+          "required": false,
+          "help": "How Customer submits support requests (e.g. 'support@provider.com' or 'https://support.provider.com'). Required if Target Response Time is set."
+        }
+      ]
+    },
+    {
+      "title": "Remedies",
+      "fields": [
+        {
+          "key": "uptimeCredit",
+          "label": "Uptime Credit",
+          "type": "text",
+          "required": false,
+          "help": "The service credit Customer receives when availability falls below Target Uptime (e.g. '10% of monthly fees'). Required if Target Uptime is set."
+        },
+        {
+          "key": "responseTimeCredit",
+          "label": "Response Time Credit",
+          "type": "text",
+          "required": false,
+          "help": "The service credit Customer receives when Provider fails to meet Target Response Time (e.g. '5% of monthly fees'). Required if Target Response Time is set."
+        }
+      ]
+    },
+    {
+      "title": "Governing Terms",
+      "fields": [
+        {
+          "key": "modifications",
+          "label": "Modifications",
+          "type": "multiline",
+          "required": false,
+          "help": "Any modifications to the SLA Standard Terms (optional)."
+        }
+      ]
+    }
+  ],
+  "tables": [
+    {
+      "key": "serviceCredits",
+      "label": "Service Credit Tiers",
+      "required": false,
+      "columns": [
+        {
+          "key": "condition",
+          "label": "Condition",
+          "type": "text"
+        },
+        {
+          "key": "credit",
+          "label": "Credit",
+          "type": "text"
+        }
+      ]
+    }
+  ]
+}

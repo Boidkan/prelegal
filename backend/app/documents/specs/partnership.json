@@ -1,0 +1,182 @@
+{
+  "id": "partnership",
+  "name": "Partnership Agreement",
+  "description": "Common Paper standard Partnership Agreement setting out each party's obligations and the terms of a business partnership.",
+  "keywords": ["partnership", "partner agreement", "joint partnership", "business partnership", "co-marketing", "comarketing", "reseller", "referral partner", "channel partner"],
+  "parties": [
+    { "role": "company", "label": "Company" },
+    { "role": "partner", "label": "Partner" }
+  ],
+  "sections": [
+    {
+      "title": "Agreement Term",
+      "fields": [
+        {
+          "key": "effectiveDate",
+          "label": "Effective Date",
+          "type": "date",
+          "required": true,
+          "help": "The date the partnership agreement takes effect."
+        },
+        {
+          "key": "endDate",
+          "label": "End Date",
+          "type": "date",
+          "required": true,
+          "help": "The date the agreement expires (unless earlier terminated)."
+        }
+      ]
+    },
+    {
+      "title": "Obligations",
+      "fields": [
+        {
+          "key": "companyObligations",
+          "label": "Company Obligations",
+          "type": "multiline",
+          "required": true,
+          "help": "Describe what Company is obligated to do under this partnership (e.g., provide product access, marketing support, referral fees)."
+        },
+        {
+          "key": "partnerObligations",
+          "label": "Partner Obligations",
+          "type": "multiline",
+          "required": true,
+          "help": "Describe what Partner is obligated to do under this partnership (e.g., promote Company's products, generate leads, co-market)."
+        }
+      ]
+    },
+    {
+      "title": "Payment Terms",
+      "fields": [
+        {
+          "key": "fees",
+          "label": "Fees",
+          "type": "currency",
+          "required": false,
+          "help": "The fee amount owed from one party to the other, if any (e.g., referral fee, revenue share amount)."
+        },
+        {
+          "key": "paymentProcess",
+          "label": "Payment Process",
+          "type": "text",
+          "required": false,
+          "help": "How fees will be billed or invoiced (e.g., monthly invoice, milestone-based billing)."
+        },
+        {
+          "key": "paymentSchedule",
+          "label": "Payment Schedule",
+          "type": "text",
+          "required": false,
+          "help": "When payments are due (e.g., net 30 days after invoice, quarterly)."
+        }
+      ]
+    },
+    {
+      "title": "Trademark License",
+      "fields": [
+        {
+          "key": "territory",
+          "label": "Territory",
+          "type": "text",
+          "required": false,
+          "help": "The geographic territory in which the trademark license is granted (e.g., Worldwide, United States).",
+          "default": "Worldwide"
+        },
+        {
+          "key": "brandElements",
+          "label": "Brand Elements",
+          "type": "multiline",
+          "required": false,
+          "help": "List the specific trademarks, logos, or other brand materials each party is licensed to use (describe which party provides which elements)."
+        },
+        {
+          "key": "brandGuidelines",
+          "label": "Brand Guidelines",
+          "type": "text",
+          "required": false,
+          "help": "Reference or URL for the licensor's brand usage guidelines, if any."
+        }
+      ]
+    },
+    {
+      "title": "Privacy",
+      "fields": [
+        {
+          "key": "dpa",
+          "label": "Data Processing Agreement (DPA)",
+          "type": "choice",
+          "required": false,
+          "options": ["Yes", "No"],
+          "default": "No",
+          "help": "Do the parties have a separate Data Processing Agreement that governs personal data under this partnership?"
+        }
+      ]
+    },
+    {
+      "title": "Limitation of Liability",
+      "fields": [
+        {
+          "key": "generalCapAmount",
+          "label": "General Cap Amount",
+          "type": "currency",
+          "required": true,
+          "help": "The maximum total liability of each party for all claims (e.g., $50,000 or fees paid in the prior 12 months)."
+        },
+        {
+          "key": "increasedCapAmount",
+          "label": "Increased Cap Amount",
+          "type": "currency",
+          "required": false,
+          "help": "A higher liability cap that applies specifically to the Increased Claims listed below, if any."
+        },
+        {
+          "key": "increasedClaims",
+          "label": "Increased Claims",
+          "type": "multiline",
+          "required": false,
+          "help": "List any claim types subject to the Increased Cap Amount rather than the General Cap Amount (e.g., IP infringement, data breach)."
+        },
+        {
+          "key": "unlimitedClaims",
+          "label": "Unlimited Claims",
+          "type": "multiline",
+          "required": false,
+          "help": "List any claim types not subject to any liability cap (e.g., gross negligence, willful misconduct, fraud)."
+        }
+      ]
+    },
+    {
+      "title": "Warranties",
+      "fields": [
+        {
+          "key": "additionalWarranties",
+          "label": "Additional Warranties",
+          "type": "multiline",
+          "required": false,
+          "help": "Any additional warranties each party must comply with beyond those in Section 7 (e.g., compliance with specific regulations, security standards)."
+        }
+      ]
+    },
+    {
+      "title": "Governing Law",
+      "fields": [
+        {
+          "key": "governingLaw",
+          "label": "Governing Law",
+          "type": "text",
+          "required": true,
+          "help": "The jurisdiction whose laws govern this agreement (e.g., State of Delaware, USA)."
+        },
+        {
+          "key": "chosenCourts",
+          "label": "Chosen Courts",
+          "type": "text",
+          "required": true,
+          "help": "The courts where disputes will be brought (e.g., courts of the State of Delaware, USA)."
+        }
+      ]
+    }
+  ],
+  "tables": []
+}

@@ -1,0 +1,72 @@
+{
+  "id": "ai-addendum",
+  "name": "AI Addendum",
+  "description": "Common Paper standard AI Addendum supplementing an agreement to cover the use of AI services, including input, output, and related restrictions.",
+  "keywords": ["ai", "artificial intelligence", "ai addendum", "machine learning", "model", "training", "training data", "input", "output", "llm", "ai services"],
+  "parties": [
+    { "role": "provider", "label": "Provider" },
+    { "role": "customer", "label": "Customer" }
+  ],
+  "sections": [
+    {
+      "title": "Agreement Reference",
+      "fields": [
+        {
+          "key": "definedInAgreement",
+          "label": "Defined In Agreement",
+          "type": "text",
+          "required": true,
+          "help": "The name of the parent agreement this AI Addendum supplements (e.g. 'Cloud Service Agreement dated January 1, 2025')."
+        },
+        {
+          "key": "effectiveDate",
+          "label": "Effective Date",
+          "type": "date",
+          "required": true,
+          "help": "The date this AI Addendum takes effect."
+        }
+      ]
+    },
+    {
+      "title": "Model Training",
+      "fields": [
+        {
+          "key": "trainingData",
+          "label": "Training Data",
+          "type": "choice",
+          "required": true,
+          "options": ["Yes", "No"],
+          "default": "No",
+          "help": "Whether Provider is permitted to use Customer's Inputs or Outputs to train any Model. If 'No', Provider may not use Customer data for training."
+        },
+        {
+          "key": "trainingPurposes",
+          "label": "Training Purposes",
+          "type": "multiline",
+          "required": false,
+          "help": "The specific purposes for which Provider may use Training Data to train Models. Only required if Training Data is 'Yes'."
+        },
+        {
+          "key": "trainingRestrictions",
+          "label": "Training Restrictions",
+          "type": "multiline",
+          "required": false,
+          "help": "Any restrictions on how Provider may use Training Data for training Models. Only applicable if Training Data is 'Yes'."
+        }
+      ]
+    },
+    {
+      "title": "Non-Training Improvement",
+      "fields": [
+        {
+          "key": "improvementRestrictions",
+          "label": "Improvement Restrictions",
+          "type": "multiline",
+          "required": false,
+          "help": "Restrictions on Provider's use of Input, Output, and Training Data for non-training improvement of the AI System (e.g. maintenance, development, quality improvement)."
+        }
+      ]
+    }
+  ],
+  "tables": []
+}

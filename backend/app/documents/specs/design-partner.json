@@ -1,0 +1,95 @@
+{
+  "id": "design-partner",
+  "name": "Design Partner Agreement",
+  "description": "Common Paper standard Design Partner Agreement for giving early-access partners access to a product in exchange for feedback and participation in a development program.",
+  "keywords": ["design partner", "early access", "pilot partner", "beta partner", "feedback", "program", "product development", "design program"],
+  "parties": [
+    { "role": "provider", "label": "Provider" },
+    { "role": "partner", "label": "Partner" }
+  ],
+  "sections": [
+    {
+      "title": "Agreement Terms",
+      "fields": [
+        {
+          "key": "effectiveDate",
+          "label": "Effective Date",
+          "type": "date",
+          "required": true,
+          "help": "The date this Agreement takes effect."
+        },
+        {
+          "key": "term",
+          "label": "Term",
+          "type": "text",
+          "required": true,
+          "help": "Duration of the design partner engagement (e.g. '6 months', '1 year', 'through December 31, 2026')."
+        }
+      ]
+    },
+    {
+      "title": "Product & Program",
+      "fields": [
+        {
+          "key": "productDescription",
+          "label": "Product",
+          "type": "multiline",
+          "required": true,
+          "help": "Description of the product or services the Partner will have early access to."
+        },
+        {
+          "key": "programDescription",
+          "label": "Program",
+          "type": "multiline",
+          "required": true,
+          "help": "Name and description of the design partner program, including Partner's participation and feedback obligations."
+        }
+      ]
+    },
+    {
+      "title": "Fees",
+      "fields": [
+        {
+          "key": "fees",
+          "label": "Fees",
+          "type": "text",
+          "required": false,
+          "help": "Fees payable by Partner to Provider, if any (e.g. '$0', '$500/month'). Leave blank or enter 'None' if no fees apply.",
+          "default": "None"
+        }
+      ]
+    },
+    {
+      "title": "Governing Law",
+      "fields": [
+        {
+          "key": "governingLaw",
+          "label": "Governing Law",
+          "type": "text",
+          "required": true,
+          "help": "The U.S. state (or other jurisdiction) whose law governs this Agreement (e.g. 'Delaware')."
+        },
+        {
+          "key": "chosenCourts",
+          "label": "Chosen Courts",
+          "type": "text",
+          "required": true,
+          "help": "The courts where disputes will be brought (e.g. 'the state and federal courts located in Wilmington, Delaware')."
+        }
+      ]
+    },
+    {
+      "title": "Modifications",
+      "fields": [
+        {
+          "key": "modifications",
+          "label": "Modifications to Standard Terms",
+          "type": "multiline",
+          "required": false,
+          "help": "Any agreed modifications to the Standard Terms (optional)."
+        }
+      ]
+    }
+  ],
+  "tables": []
+}

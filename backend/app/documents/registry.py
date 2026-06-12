@@ -1,0 +1,91 @@
+"""Loads the document specs and exposes lookups plus prompt-building helpers."""
+
+from __future__ import annotations
+
+import html
+import json
+import re
+from functools import cache
+from pathlib import Path
+
+from .models import DocumentSpec
+
+# Common Paper templates wrap text in styling spans: section headers
+# (header_2/header_3) and defined-term links (keyterms_link, etc.). Turn headers
+# into bold Markdown and drop the rest, leaving clean Markdown the preview / PDF
+# render and the download keeps.
+_HEADER_RE = re.compile(r'<span[^>]*class="header_[23][^"]*"[^>]*>(.*?)</span>')
+_SPAN_RE = re.compile(r"</?span[^>]*>")
+# Collapse 3+ blank lines left behind into at most one.
+_BLANKS_RE = re.compile(r"\n{3,}")
+
+
+def _clean_terms(text: str) -> str:
+    text = _HEADER_RE.sub(r"**\1**", text)
+    text = _SPAN_RE.sub("", text)
+    return _BLANKS_RE.sub("\n\n", html.unescape(text)).strip()
+
+_DIR = Path(__file__).resolve().parent
+_SPECS_DIR = _DIR / "specs"
+_TERMS_DIR = _DIR / "standard_terms"
+
+
+@cache
+def _load() -> dict[str, DocumentSpec]:
+    specs: dict[str, DocumentSpec] = {}
+    for path in sorted(_SPECS_DIR.glob("*.json")):
+        spec = DocumentSpec.model_validate_json(path.read_text())
+        specs[spec.id] = spec
+    return specs
+
+
+def all_specs() -> list[DocumentSpec]:
+    return list(_load().values())
+
+
+def get(type_id: str) -> DocumentSpec | None:
+    return _load().get(type_id)
+
+
+def has(type_id: str) -> bool:
+    return type_id in _load()
+
+
+@cache
+def standard_terms(type_id: str) -> str:
+    """The Standard Terms text for a type, cleaned of styling HTML (empty if absent)."""
+    path = _TERMS_DIR / f"{type_id}.md"
+    return _clean_terms(path.read_text()) if path.exists() else ""
+
+
+def catalog_summary() -> str:
+    """One line per supported document, for type detection in the prompt."""
+    return "\n".join(f'- {s.id}: {s.name} — {s.description}' for s in all_specs())
+
+
+def field_guide(spec: DocumentSpec) -> str:
+    """A description of a type's fields/parties/tables for the prompt."""
+    lines: list[str] = [f"You are collecting details for a {spec.name}.", ""]
+    lines.append("Parties (each needs name, title, company, noticeAddress):")
+    lines += [f"  - role '{p.role}': {p.label}" for p in spec.parties]
+    lines.append("")
+    lines.append("Fields (use the exact key):")
+    for section in spec.sections:
+        lines.append(f"  [{section.title}]")
+        for f in section.fields:
+            bits = [f"key '{f.key}'", f.type]
+            if f.required:
+                bits.append("required")
+            if f.options:
+                bits.append("one of: " + " | ".join(f.options))
+            if f.help:
+                bits.append(f.help)
+            lines.append(f"    - {f.label} ({', '.join(bits)})")
+    if spec.tables:
+        lines.append("")
+        lines.append("Tables (repeating rows; address rows by 0-based rowIndex):")
+        for t in spec.tables:
+            cols = ", ".join(f"'{c.key}'" for c in t.columns)
+            req = " (at least one row required)" if t.required else ""
+            lines.append(f"  - table '{t.key}' ({t.label}){req}: columns {cols}")
+    return "\n".join(lines)

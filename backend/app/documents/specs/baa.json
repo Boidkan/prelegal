@@ -1,0 +1,65 @@
+{
+  "id": "baa",
+  "name": "Business Associate Agreement",
+  "description": "Common Paper standard Business Associate Agreement (BAA) addressing HIPAA obligations and the permitted use and disclosure of protected health information (PHI).",
+  "keywords": [
+    "baa",
+    "business associate",
+    "business associate agreement",
+    "hipaa",
+    "phi",
+    "protected health information",
+    "covered entity",
+    "healthcare",
+    "health data",
+    "privacy rule",
+    "security rule"
+  ],
+  "parties": [
+    {
+      "role": "provider",
+      "label": "Provider"
+    },
+    {
+      "role": "company",
+      "label": "Company"
+    }
+  ],
+  "sections": [
+    {
+      "title": "Agreement Terms",
+      "fields": [
+        {
+          "key": "effectiveDate",
+          "label": "BAA Effective Date",
+          "type": "date",
+          "required": true,
+          "help": "The date this Business Associate Agreement takes effect."
+        },
+        {
+          "key": "agreement",
+          "label": "Underlying Agreement",
+          "type": "text",
+          "required": true,
+          "help": "The name or reference to the underlying service agreement between Provider and Company that this BAA supplements (e.g. 'Cloud Service Agreement dated January 1, 2025')."
+        },
+        {
+          "key": "breachNotificationPeriod",
+          "label": "Breach Notification Period",
+          "type": "text",
+          "required": true,
+          "help": "The period within which Provider must report a breach or unauthorized use/disclosure of PHI to Company (e.g. '30 days', '72 hours')."
+        },
+        {
+          "key": "limitations",
+          "label": "Limitations",
+          "type": "multiline",
+          "required": false,
+          "help": "Any restrictions on Provider's rights under the Data Rights & Restrictions section, such as prohibitions on offshoring PHI, de-identification, or aggregation. Leave blank if no limitations apply.",
+          "default": "None"
+        }
+      ]
+    }
+  ],
+  "tables": []
+}
