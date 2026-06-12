@@ -1,5 +1,6 @@
 "use client";
 
+import { Fragment } from "react";
 import { fieldValue } from "@/lib/buildDocument";
 import {
   PARTY_FIELDS,
@@ -7,6 +8,34 @@ import {
   type DocumentDraft,
   type DocumentSpec,
 } from "@/lib/documents";
+import { parseMarkdownLines, type Segment } from "@/lib/markdown";
+
+/** Render inline segments (bold / link / text) as React nodes. */
+function renderSegments(segments: Segment[]) {
+  return segments.map((seg, i) => {
+    if (seg.href) {
+      return (
+        <a
+          key={i}
+          href={seg.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-brand-blue underline"
+        >
+          {seg.text}
+        </a>
+      );
+    }
+    if (seg.bold) {
+      return (
+        <strong key={i} className="font-semibold text-slate-800">
+          {seg.text}
+        </strong>
+      );
+    }
+    return <Fragment key={i}>{seg.text}</Fragment>;
+  });
+}
 
 /**
  * Live, read-only rendering of the document: the filled cover page on top, then
@@ -137,9 +166,23 @@ export function DocumentPreview({
           <h3 className="text-xs font-semibold uppercase tracking-wide text-brand-blue">
             Standard Terms
           </h3>
-          <pre className="mt-2 whitespace-pre-wrap font-sans text-xs leading-relaxed text-slate-600">
-            {standardTerms}
-          </pre>
+          <div className="mt-2 text-xs leading-relaxed text-slate-600">
+            {parseMarkdownLines(standardTerms).map((line, i) => {
+              if (line.kind === "blank") return <div key={i} className="h-2" />;
+              if (line.kind === "heading") {
+                return (
+                  <p key={i} className="mt-3 font-semibold text-brand-navy">
+                    {renderSegments(line.segments)}
+                  </p>
+                );
+              }
+              return (
+                <p key={i} className="whitespace-pre-wrap">
+                  {renderSegments(line.segments)}
+                </p>
+              );
+            })}
+          </div>
         </section>
       )}
     </article>

@@ -20,6 +20,7 @@ import {
   type DocumentDraft,
   type DocumentSpec,
 } from "@/lib/documents";
+import { parseMarkdownLines } from "@/lib/markdown";
 
 const styles = StyleSheet.create({
   page: { padding: 48, fontSize: 10, lineHeight: 1.5, color: "#1e293b" },
@@ -44,7 +45,15 @@ const styles = StyleSheet.create({
     fontSize: 9,
   },
   cellHead: { backgroundColor: "#f1f5f9", fontWeight: 700, color: "#475569" },
-  terms: { fontSize: 9, color: "#475569", marginBottom: 6 },
+  terms: { fontSize: 9, color: "#475569", marginBottom: 4 },
+  termsHeading: {
+    fontSize: 9,
+    fontWeight: 700,
+    color: "#032147",
+    marginTop: 6,
+    marginBottom: 2,
+  },
+  bold: { fontWeight: 700, color: "#1e293b" },
   divider: { borderTopWidth: 1, borderTopColor: "#cbd5e1", marginVertical: 14 },
 });
 
@@ -57,10 +66,9 @@ export function DocumentPdf({
   draft: DocumentDraft;
   standardTerms: string;
 }) {
-  const termsParagraphs = standardTerms
-    .split(/\n{2,}/)
-    .map((p) => p.replace(/\s+/g, " ").trim())
-    .filter(Boolean);
+  const termsLines = parseMarkdownLines(standardTerms).filter(
+    (line) => line.kind !== "blank",
+  );
 
   return (
     <Document>
@@ -127,13 +135,24 @@ export function DocumentPdf({
           </View>
         ))}
 
-        {termsParagraphs.length > 0 && (
+        {termsLines.length > 0 && (
           <>
             <View style={styles.divider} />
             <Text style={styles.sectionTitle}>Standard Terms</Text>
-            {termsParagraphs.map((p, i) => (
-              <Text key={i} style={styles.terms}>
-                {p}
+            {termsLines.map((line, i) => (
+              <Text
+                key={i}
+                style={line.kind === "heading" ? styles.termsHeading : styles.terms}
+              >
+                {line.segments.map((seg, j) =>
+                  seg.bold ? (
+                    <Text key={j} style={styles.bold}>
+                      {seg.text}
+                    </Text>
+                  ) : (
+                    seg.text
+                  ),
+                )}
               </Text>
             ))}
           </>

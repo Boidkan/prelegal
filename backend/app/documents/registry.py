@@ -10,15 +10,20 @@ from pathlib import Path
 
 from .models import DocumentSpec
 
-# Common Paper templates wrap text in styling spans (e.g. defined-term links and
-# section headers). Strip them to plain text for the preview / PDF / Markdown.
+# Common Paper templates wrap text in styling spans: section headers
+# (header_2/header_3) and defined-term links (keyterms_link, etc.). Turn headers
+# into bold Markdown and drop the rest, leaving clean Markdown the preview / PDF
+# render and the download keeps.
+_HEADER_RE = re.compile(r'<span[^>]*class="header_[23][^"]*"[^>]*>(.*?)</span>')
 _SPAN_RE = re.compile(r"</?span[^>]*>")
 # Collapse 3+ blank lines left behind into at most one.
 _BLANKS_RE = re.compile(r"\n{3,}")
 
 
 def _clean_terms(text: str) -> str:
-    return _BLANKS_RE.sub("\n\n", html.unescape(_SPAN_RE.sub("", text))).strip()
+    text = _HEADER_RE.sub(r"**\1**", text)
+    text = _SPAN_RE.sub("", text)
+    return _BLANKS_RE.sub("\n\n", html.unescape(text)).strip()
 
 _DIR = Path(__file__).resolve().parent
 _SPECS_DIR = _DIR / "specs"
