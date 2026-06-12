@@ -32,8 +32,10 @@ def test_spec_is_well_formed(spec) -> None:
         for field in section.fields:
             if field.type == "choice":
                 assert field.options, f"{spec.id}.{field.key} choice needs options"
-    # Standard Terms text is present and substantial.
-    assert len(registry.standard_terms(spec.id)) > 400
+    # Standard Terms text is present, substantial, and free of styling HTML.
+    terms = registry.standard_terms(spec.id)
+    assert len(terms) > 400
+    assert "<span" not in terms and "</span>" not in terms
 
 
 def test_field_update_ignores_unknown_keys() -> None:

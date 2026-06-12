@@ -2,11 +2,23 @@
 
 from __future__ import annotations
 
+import html
 import json
+import re
 from functools import cache
 from pathlib import Path
 
 from .models import DocumentSpec
+
+# Common Paper templates wrap text in styling spans (e.g. defined-term links and
+# section headers). Strip them to plain text for the preview / PDF / Markdown.
+_SPAN_RE = re.compile(r"</?span[^>]*>")
+# Collapse 3+ blank lines left behind into at most one.
+_BLANKS_RE = re.compile(r"\n{3,}")
+
+
+def _clean_terms(text: str) -> str:
+    return _BLANKS_RE.sub("\n\n", html.unescape(_SPAN_RE.sub("", text))).strip()
 
 _DIR = Path(__file__).resolve().parent
 _SPECS_DIR = _DIR / "specs"
@@ -36,9 +48,9 @@ def has(type_id: str) -> bool:
 
 @cache
 def standard_terms(type_id: str) -> str:
-    """The verbatim Standard Terms text for a type (empty if absent)."""
+    """The Standard Terms text for a type, cleaned of styling HTML (empty if absent)."""
     path = _TERMS_DIR / f"{type_id}.md"
-    return path.read_text() if path.exists() else ""
+    return _clean_terms(path.read_text()) if path.exists() else ""
 
 
 def catalog_summary() -> str:
